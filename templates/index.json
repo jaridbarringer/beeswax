@@ -1,16 +1,5 @@
 {
   "sections": {
-    "bw_announcement": {
-      "type": "beeswax-announcement",
-      "settings": {
-        "body": "<p>A slower, simpler way to keep bread fresh</p>",
-        "background_color": "#33251D",
-        "text_color": "#F5F0E6",
-        "padding_top": 0,
-        "padding_bottom": 0,
-        "alignment": "center"
-      }
-    },
     "bw_hero": {
       "type": "beeswax-hero",
       "settings": {
@@ -211,7 +200,6 @@
     }
   },
   "order": [
-    "bw_announcement",
     "bw_hero",
     "bw_intro",
     "bw_featured_product",
