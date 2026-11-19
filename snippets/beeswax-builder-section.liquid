@@ -6,7 +6,7 @@
   assign section_product = section.settings.product
   assign section_collection = section.settings.collection
 -%}
-<section id="BW-{{ kind }}-{{ section.id }}" class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};">
+<section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};">
   {%- case kind -%}
     {%- when 'announcement' -%}
       <div class="bw-builder__announcement">
@@ -18,7 +18,7 @@
         {%- if section.settings.image != blank -%}
           <picture class="bw-builder__picture">
             {%- if section.settings.mobile_image != blank -%}<source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 1000 }}">{%- endif -%}
-            {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image.alt }}
+            {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image.alt, class: 'bw-parallax-image' }}
           </picture>
         {%- endif -%}
         <div class="bw-builder__shade"></div>
@@ -68,7 +68,8 @@
     {%- when 'newsletter' -%}
       <div class="bw-builder__content bw-builder__inner">
         <p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading }}</h2><div class="bw-builder__copy">{{ section.settings.body }}</div>
-        {%- form 'customer', id: 'BWNewsletter-' | append: section.id, class: 'bw-builder__newsletter' -%}
+        {%- assign newsletter_form_id = 'BWNewsletter-' | append: section.id -%}
+        {%- form 'customer', id: newsletter_form_id, class: 'bw-builder__newsletter' -%}
           <input type="hidden" name="contact[tags]" value="newsletter">
           <label class="visually-hidden" for="BWEmail-{{ section.id }}">Email address</label>
           <input id="BWEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email }}" placeholder="Your email address" autocorrect="off" autocapitalize="off" required>
@@ -81,7 +82,7 @@
       <div class="bw-builder__inner">
         {%- if section.settings.image != blank and kind == 'image-text' or section.settings.image != blank and kind == 'story' -%}
           <div class="bw-builder__split">
-            <div class="bw-builder__media">{{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: section.settings.image.alt }}</div>
+            <div class="bw-builder__media">{{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: section.settings.image.alt, class: 'bw-parallax-image' }}</div>
             <div class="bw-builder__content">
               {%- if section.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
               {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
@@ -116,6 +117,13 @@
 </section>
 <style>
   #BW-{{ kind }}-{{ section.id }} { color:var(--bw-fg);background:var(--bw-bg);padding-top:var(--bw-pad-top);padding-bottom:var(--bw-pad-bottom); }
+  #BW-{{ kind }}-{{ section.id }}.bw-builder--announcement,#BW-{{ kind }}-{{ section.id }}.bw-builder--hero { padding:0; }
+  #BW-{{ kind }}-{{ section.id }}[data-bw-reveal] .bw-builder__content { opacity:0;transform:translateY(22px);transition:opacity .8s ease,transform .8s ease; }
+  #BW-{{ kind }}-{{ section.id }}.bw-is-visible[data-bw-reveal] .bw-builder__content { opacity:1;transform:none; }
+  #BW-{{ kind }}-{{ section.id }}.bw-motion--fade[data-bw-reveal] .bw-builder__content { transform:none; }
+  #BW-{{ kind }}-{{ section.id }}.bw-motion--zoom[data-bw-reveal] .bw-builder__content { transform:scale(.97); }
+  #BW-{{ kind }}-{{ section.id }}.bw-is-visible.bw-motion--zoom[data-bw-reveal] .bw-builder__content { transform:scale(1); }
+  #BW-{{ kind }}-{{ section.id }} .bw-parallax-image { transform:scale(1.12);will-change:transform; }
   #BW-{{ kind }}-{{ section.id }} * { box-sizing:border-box; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__inner { width:min(var(--bw-content-width,1240px),88%);margin-inline:auto; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__content { display:flex;flex-direction:column;align-items:flex-start;justify-content:center;max-width:680px;padding:clamp(28px,5vw,72px); }
