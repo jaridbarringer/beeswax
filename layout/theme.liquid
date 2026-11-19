@@ -65,6 +65,34 @@
 
     {{ content_for_header }}
 
+    {% style %}
+      {{ settings.bw_heading_font | font_face: font_display: 'swap' }}
+      {{ settings.bw_body_font | font_face: font_display: 'swap' }}
+      :root {
+        --bw-heading-font: {{ settings.bw_heading_font.family }}, {{ settings.bw_heading_font.fallback_families }};
+        --bw-body-font: {{ settings.bw_body_font.family }}, {{ settings.bw_body_font.fallback_families }};
+        --bw-body-size: {{ settings.bw_body_size }}px;
+        --bw-content-width: {{ settings.bw_content_width }}px;
+        --bw-button-radius: {{ settings.bw_button_radius }}px;
+        --bw-button-bg: {{ settings.bw_button_background }};
+        --bw-button-text: {{ settings.bw_button_text }};
+        --bw-page-bg: {% if settings.bw_page_gradient != blank %}{{ settings.bw_page_gradient }}{% else %}{{ settings.bw_page_background }}{% endif %};
+        --bw-page-text: {{ settings.bw_global_text }};
+        --bw-accent: {{ settings.bw_accent_color }};
+      }
+      body { font-family: var(--bw-body-font); background: var(--bw-page-bg); color: var(--bw-page-text); }
+      h1,h2,h3,h4,h5,h6,.h0,.h1,.h2,.h3,.h4 { font-family: var(--bw-heading-font); }
+      .bw-builder__button,.button { border-radius:var(--bw-button-radius); }
+      .bw-builder__button { background:var(--bw-button-bg);color:var(--bw-button-text); }
+      body[data-bw-preset="modern"] { --bw-button-radius:4px; }
+      body[data-bw-preset="organic"] { --bw-button-radius:18px; }
+      body[data-bw-preset="editorial"] { --bw-button-radius:0px; }
+      @media (prefers-reduced-motion: reduce) { html:focus-within { scroll-behavior:auto; } *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important; } }
+    {% endstyle %}
+    <script>document.documentElement.dataset.bwPreset = {{ settings.bw_design_preset | json }};</script>
+    <script src="{{ 'beeswax-builder.js' | asset_url }}" defer="defer"></script>
+
+
     {%- liquid
       assign body_font_bold = settings.type_body_font | font_modify: 'weight', 'bold'
       assign body_font_italic = settings.type_body_font | font_modify: 'style', 'italic'
