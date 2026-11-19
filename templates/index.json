@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "bw_hero": {
@@ -6,14 +15,24 @@
         "eyebrow": "THE EVERYDAY BREAD RITUAL",
         "heading": "A little more care for the things we love.",
         "body": "<p>A thoughtfully made beeswax bread bag for fresh loaves, slow mornings, and a kitchen that feels like home.</p>",
+        "image": "shopify://shop_images/Rustic_Sourdough_Bread_Bag_Display-2.png",
+        "overlay_gradient": "",
+        "product": "reusable-beeswax-bread-bag",
+        "collection": "",
+        "button_link": "",
         "button_label": "Discover the bread bag",
+        "layout": "full",
+        "alignment": "left",
+        "image_position": "center center",
+        "background_color": "#66513d",
+        "background_gradient": "",
+        "text_color": "#E81313",
+        "overlay_opacity": 55,
         "section_height": 80,
-        "background_color": "#66513D",
-        "text_color": "#FFFFFF",
-        "overlay_opacity": 40,
         "padding_top": 0,
         "padding_bottom": 0,
-        "product": "reusable-beeswax-bread-bag"
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_intro": {
@@ -22,7 +41,23 @@
         "eyebrow": "SIMPLE BY NATURE",
         "heading": "Good bread deserves a good place to call home.",
         "body": "<p>Bring a little intention back to your kitchen with a reusable bread bag made for the loaves you love and the everyday rituals around them.</p>",
-        "alignment": "center"
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_featured_product": {
@@ -31,39 +66,56 @@
         "eyebrow": "MEET YOUR NEW KITCHEN STAPLE",
         "heading": "The Beeswax Bread Bag",
         "body": "<p>Made for the loaf on your counter. A reusable, easygoing alternative to disposable bread storage, with a warm, natural look that belongs in your kitchen.</p>",
+        "overlay_gradient": "",
         "product": "reusable-beeswax-bread-bag",
-        "background_color": "#F5F0E6"
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "left",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_benefits": {
       "type": "beeswax-benefits",
-      "settings": {
-        "eyebrow": "LESS THROWAWAY. MORE EVERYDAY.",
-        "heading": "Made to fit the rhythm of home.",
-        "body": "<p>Thoughtful details for the everyday kitchen.</p>",
-        "alignment": "center",
-        "columns": 3
-      },
       "blocks": {
         "benefit_1": {
           "type": "item",
           "settings": {
+            "eyebrow": "",
             "heading": "Reusable by design",
-            "body": "<p>A simple swap for single-use bread bags, made to be part of your regular kitchen routine.</p>"
+            "body": "<p>A simple swap for single-use bread bags, made to be part of your regular kitchen routine.</p>",
+            "meta": "",
+            "link": ""
           }
         },
         "benefit_2": {
           "type": "item",
           "settings": {
+            "eyebrow": "",
             "heading": "Room for your loaf",
-            "body": "<p>Generously sized at 16 × 14 inches, with room for the breads you bring home.</p>"
+            "body": "<p>Generously sized at 16 × 14 inches, with room for the breads you bring home.</p>",
+            "meta": "",
+            "link": ""
           }
         },
         "benefit_3": {
           "type": "item",
           "settings": {
+            "eyebrow": "",
             "heading": "A natural look",
-            "body": "<p>Warm, understated style that looks right at home on your counter or at the table.</p>"
+            "body": "<p>Warm, understated style that looks right at home on your counter or at the table.</p>",
+            "meta": "",
+            "link": ""
           }
         }
       },
@@ -71,7 +123,29 @@
         "benefit_1",
         "benefit_2",
         "benefit_3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "LESS THROWAWAY. MORE EVERYDAY.",
+        "heading": "Made to fit the rhythm of home.",
+        "body": "<p>Thoughtful details for the everyday kitchen.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
+      }
     },
     "bw_image_text": {
       "type": "beeswax-image-text",
@@ -79,36 +153,56 @@
         "eyebrow": "THE EVERYDAY RITUAL",
         "heading": "A little less plastic. A lot more purpose.",
         "body": "<p>Meet your new everyday kitchen essential, designed to make storing your favorite loaf feel more thoughtful.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Explore the bread bag",
         "layout": "image-left",
-        "button_label": "Explore the bread bag"
+        "alignment": "left",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_gallery": {
       "type": "beeswax-gallery",
-      "settings": {
-        "eyebrow": "A PLACE IN YOUR KITCHEN",
-        "heading": "For the everyday, and everything around it.",
-        "body": "<p>Little moments, naturally at home.</p>",
-        "alignment": "center",
-        "columns": 3
-      },
       "blocks": {
         "photo_1": {
           "type": "item",
           "settings": {
-            "heading": "In the kitchen"
+            "eyebrow": "",
+            "heading": "In the kitchen",
+            "body": "<p>Add supporting copy here.</p>",
+            "meta": "",
+            "link": ""
           }
         },
         "photo_2": {
           "type": "item",
           "settings": {
-            "heading": "Around the table"
+            "eyebrow": "",
+            "heading": "Around the table",
+            "body": "<p>Add supporting copy here.</p>",
+            "meta": "",
+            "link": ""
           }
         },
         "photo_3": {
           "type": "item",
           "settings": {
-            "heading": "Made for everyday"
+            "eyebrow": "",
+            "heading": "Made for everyday",
+            "body": "<p>Add supporting copy here.</p>",
+            "meta": "",
+            "link": ""
           }
         }
       },
@@ -116,7 +210,29 @@
         "photo_1",
         "photo_2",
         "photo_3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "A PLACE IN YOUR KITCHEN",
+        "heading": "For the everyday, and everything around it.",
+        "body": "<p>Little moments, naturally at home.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
+      }
     },
     "bw_story": {
       "type": "beeswax-story",
@@ -124,41 +240,56 @@
         "eyebrow": "THE LITTLE THINGS MATTER",
         "heading": "Keep the good things close.",
         "body": "<p>There is something special about bringing home a fresh loaf. We believe the things we use every day should feel just as thoughtful.</p>",
-        "layout": "image-left"
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "left",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_testimonials": {
       "type": "beeswax-testimonials",
-      "settings": {
-        "eyebrow": "KIND WORDS",
-        "heading": "A little love from our community.",
-        "body": "<p>What customers are saying.</p>",
-        "alignment": "center",
-        "columns": 3
-      },
       "blocks": {
         "quote_1": {
           "type": "item",
           "settings": {
-            "meta": "★★★★★",
+            "eyebrow": "",
             "heading": "A lovely everyday essential",
-            "body": "<p>Add a customer review here.</p>"
+            "body": "<p>Add a customer review here.</p>",
+            "meta": "★★★★★",
+            "link": ""
           }
         },
         "quote_2": {
           "type": "item",
           "settings": {
-            "meta": "★★★★★",
+            "eyebrow": "",
             "heading": "Beautiful and practical",
-            "body": "<p>Add a customer review here.</p>"
+            "body": "<p>Add a customer review here.</p>",
+            "meta": "★★★★★",
+            "link": ""
           }
         },
         "quote_3": {
           "type": "item",
           "settings": {
-            "meta": "★★★★★",
+            "eyebrow": "",
             "heading": "A thoughtful gift",
-            "body": "<p>Add a customer review here.</p>"
+            "body": "<p>Add a customer review here.</p>",
+            "meta": "★★★★★",
+            "link": ""
           }
         }
       },
@@ -166,7 +297,29 @@
         "quote_1",
         "quote_2",
         "quote_3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "KIND WORDS",
+        "heading": "A little love from our community.",
+        "body": "<p>What customers are saying.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
+        "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
+      }
     },
     "bw_collection": {
       "type": "beeswax-collection",
@@ -174,7 +327,22 @@
         "eyebrow": "SHOP THE COLLECTION",
         "heading": "Thoughtful things for your kitchen.",
         "body": "<p>Find your everyday favorite.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
         "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
         "columns": 3
       }
     },
@@ -184,8 +352,23 @@
         "eyebrow": "A NOTE FROM OUR KITCHEN",
         "heading": "Stay in the loop.",
         "body": "<p>New arrivals, thoughtful ideas, and a little inspiration for home.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Discover more",
+        "layout": "image-left",
         "alignment": "center",
-        "background_color": "#E8DFCF"
+        "image_position": "center center",
+        "background_color": "#e8dfcf",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     },
     "bw_cta": {
@@ -194,8 +377,23 @@
         "eyebrow": "YOUR KITCHEN, A LITTLE MORE CONSIDERED",
         "heading": "Make room for the good stuff.",
         "body": "<p>A fresh loaf. A familiar ritual. A better everyday bread bag.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Shop the bread bag",
+        "layout": "image-left",
         "alignment": "center",
-        "button_label": "Shop the bread bag"
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 72,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
       }
     }
   },
