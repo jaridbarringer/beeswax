@@ -1,0 +1,163 @@
+{%- liquid
+  assign section_bg = section.settings.background_gradient
+  if section_bg == blank
+    assign section_bg = section.settings.background_color
+  endif
+  assign section_product = section.settings.product
+  assign section_collection = section.settings.collection
+-%}
+<section id="BW-{{ kind }}-{{ section.id }}" class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};">
+  {%- case kind -%}
+    {%- when 'announcement' -%}
+      <div class="bw-builder__announcement">
+        <span>{{ section.settings.body | strip_html | escape }}</span>
+        {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}<a href="{{ section.settings.button_link }}">{{ section.settings.button_label | escape }}</a>{%- endif -%}
+      </div>
+    {%- when 'hero' -%}
+      <div class="bw-builder__hero">
+        {%- if section.settings.image != blank -%}
+          <picture class="bw-builder__picture">
+            {%- if section.settings.mobile_image != blank -%}<source media="(max-width: 749px)" srcset="{{ section.settings.mobile_image | image_url: width: 1000 }}">{%- endif -%}
+            {{ section.settings.image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.image.alt }}
+          </picture>
+        {%- endif -%}
+        <div class="bw-builder__shade"></div>
+        <div class="bw-builder__content bw-builder__content--hero">
+          {%- if section.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+          {%- if section.settings.heading != blank -%}<h1>{{ section.settings.heading }}</h1>{%- endif -%}
+          <div class="bw-builder__copy">{{ section.settings.body }}</div>
+          {%- if section.settings.button_label != blank -%}<a class="bw-builder__button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} <span aria-hidden="true">↗</span></a>{%- endif -%}
+        </div>
+      </div>
+    {%- when 'featured-product' -%}
+      {%- if section_product != blank -%}
+        <div class="bw-builder__split">
+          <div class="bw-builder__media">
+            {%- assign product_image = section.settings.image | default: section_product.featured_image -%}
+            {%- if product_image != blank -%}{{ product_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: product_image.alt }}{%- endif -%}
+          </div>
+          <div class="bw-builder__content">
+            <p class="bw-builder__eyebrow">{{ section.settings.eyebrow | default: 'Made for everyday' | escape }}</p>
+            <h2>{{ section.settings.heading | default: section_product.title }}</h2>
+            <div class="bw-builder__copy">{{ section.settings.body }}</div>
+            <p class="bw-builder__price">{{ section_product.price | money }}</p>
+            {%- form 'product', section_product, class: 'bw-builder__product-form' -%}
+              {%- if section_product.variants.size > 1 -%}
+                <label class="visually-hidden" for="BWVariant-{{ section.id }}">Choose an option</label>
+                <select id="BWVariant-{{ section.id }}" name="id">{%- for variant in section_product.variants -%}<option value="{{ variant.id }}" {% if variant == section_product.selected_or_first_available_variant %}selected{% endif %} {% unless variant.available %}disabled{% endunless %}>{{ variant.title }} — {{ variant.price | money }}{% unless variant.available %} — Sold out{% endunless %}</option>{%- endfor -%}</select>
+              {%- else -%}<input type="hidden" name="id" value="{{ section_product.selected_or_first_available_variant.id }}">{%- endif -%}
+              <button class="bw-builder__button" type="submit" name="add" {% unless section_product.selected_or_first_available_variant.available %}disabled{% endunless %}>Add to cart <span aria-hidden="true">↗</span></button>
+            {%- endform -%}
+            <a class="bw-builder__text-link" href="{{ section_product.url }}">View product details →</a>
+          </div>
+        </div>
+      {%- else -%}<div class="bw-builder__content"><h2>Select a product in this section's settings</h2></div>{%- endif -%}
+    {%- when 'collection' -%}
+      <div class="bw-builder__inner">
+        <div class="bw-builder__section-heading"><p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading | default: section_collection.title }}</h2>{{ section.settings.body }}</div>
+        {%- if section_collection != blank -%}
+          <div class="bw-builder__product-grid">{%- for product in section_collection.products limit: 8 -%}
+            <a class="bw-builder__product-card" href="{{ product.url }}">
+              {%- if product.featured_image -%}{{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', alt: product.title }}{%- endif -%}
+              <span>{{ product.title | escape }}</span><span>{{ product.price | money }}</span>
+            </a>
+          {%- endfor -%}</div>
+          <a class="bw-builder__text-link" href="{{ section_collection.url }}">Shop the collection →</a>
+        {%- else -%}<p>Choose a collection in this section's settings.</p>{%- endif -%}
+      </div>
+    {%- when 'newsletter' -%}
+      <div class="bw-builder__content bw-builder__inner">
+        <p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p><h2>{{ section.settings.heading }}</h2><div class="bw-builder__copy">{{ section.settings.body }}</div>
+        {%- form 'customer', id: 'BWNewsletter-' | append: section.id, class: 'bw-builder__newsletter' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <label class="visually-hidden" for="BWEmail-{{ section.id }}">Email address</label>
+          <input id="BWEmail-{{ section.id }}" type="email" name="contact[email]" value="{{ form.email }}" placeholder="Your email address" autocorrect="off" autocapitalize="off" required>
+          <button class="bw-builder__button" type="submit">Sign me up ↗</button>
+          {%- if form.posted_successfully? -%}<p>Thank you for subscribing.</p>{%- endif -%}
+          {{ form.errors | default_errors }}
+        {%- endform -%}
+      </div>
+    {%- else -%}
+      <div class="bw-builder__inner">
+        {%- if section.settings.image != blank and kind == 'image-text' or section.settings.image != blank and kind == 'story' -%}
+          <div class="bw-builder__split">
+            <div class="bw-builder__media">{{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: section.settings.image.alt }}</div>
+            <div class="bw-builder__content">
+              {%- if section.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+              {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+              <div class="bw-builder__copy">{{ section.settings.body }}</div>
+              {%- if section.settings.button_label != blank -%}<a class="bw-builder__button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} ↗</a>{%- endif -%}
+            </div>
+          </div>
+        {%- else -%}
+          <div class="bw-builder__content">
+            {%- if section.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
+            {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
+            <div class="bw-builder__copy">{{ section.settings.body }}</div>
+            {%- if section.settings.button_label != blank -%}<a class="bw-builder__button" href="{{ section.settings.button_link | default: routes.all_products_collection_url }}">{{ section.settings.button_label | escape }} ↗</a>{%- endif -%}
+          </div>
+        {%- endif -%}
+        {%- if section.blocks.size > 0 -%}
+          <div class="bw-builder__cards">
+            {%- for block in section.blocks -%}
+              <article class="bw-builder__card" {{ block.shopify_attributes }}>
+                {%- if block.settings.image != blank -%}{{ block.settings.image | image_url: width: 900 | image_tag: loading: 'lazy', alt: block.settings.image.alt }}{%- endif -%}
+                {%- if block.settings.meta != blank -%}<p class="bw-builder__eyebrow">{{ block.settings.meta | escape }}</p>{%- endif -%}
+                {%- if block.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ block.settings.eyebrow | escape }}</p>{%- endif -%}
+                {%- if block.settings.heading != blank -%}<h3>{{ block.settings.heading | escape }}</h3>{%- endif -%}
+                <div class="bw-builder__copy">{{ block.settings.body }}</div>
+                {%- if block.settings.link != blank -%}<a class="bw-builder__text-link" href="{{ block.settings.link }}">Discover more →</a>{%- endif -%}
+              </article>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endcase -%}
+</section>
+<style>
+  #BW-{{ kind }}-{{ section.id }} { color:var(--bw-fg);background:var(--bw-bg);padding-top:var(--bw-pad-top);padding-bottom:var(--bw-pad-bottom); }
+  #BW-{{ kind }}-{{ section.id }} * { box-sizing:border-box; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__inner { width:min(var(--bw-content-width,1240px),88%);margin-inline:auto; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__content { display:flex;flex-direction:column;align-items:flex-start;justify-content:center;max-width:680px;padding:clamp(28px,5vw,72px); }
+  #BW-{{ kind }}-{{ section.id }}.bw-align--center .bw-builder__content, #BW-{{ kind }}-{{ section.id }}.bw-align--center .bw-builder__section-heading { align-items:center;text-align:center;margin-inline:auto; }
+  #BW-{{ kind }}-{{ section.id }}.bw-align--right .bw-builder__content { align-items:flex-end;text-align:right;margin-left:auto; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__eyebrow { font-size:11px;letter-spacing:.18em;text-transform:uppercase;margin:0 0 18px; }
+  #BW-{{ kind }}-{{ section.id }} h1,#BW-{{ kind }}-{{ section.id }} h2,#BW-{{ kind }}-{{ section.id }} h3 { font-family:var(--bw-heading-font,Georgia,serif);font-weight:400;letter-spacing:-.035em;line-height:1.04;margin:0 0 22px; }
+  #BW-{{ kind }}-{{ section.id }} h1 { font-size:clamp(44px,7vw,104px);max-width:900px; }
+  #BW-{{ kind }}-{{ section.id }} h2 { font-size:clamp(34px,5vw,66px); }
+  #BW-{{ kind }}-{{ section.id }} h3 { font-size:clamp(22px,2.3vw,30px); }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__copy { font-size:var(--bw-body-size,15px);line-height:1.85;max-width:680px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__copy p { margin:0 0 14px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__button { display:inline-flex;align-items:center;justify-content:space-between;gap:28px;min-height:52px;padding:0 25px;background:var(--bw-button-bg,var(--bw-fg));color:var(--bw-button-text,var(--bw-bg));border:var(--bw-button-border,1px solid transparent);border-radius:var(--bw-button-radius,0px);font:600 11px var(--bw-body-font,Arial,sans-serif);letter-spacing:.12em;text-transform:uppercase;text-decoration:none;cursor:pointer;transition:transform .25s ease,opacity .25s ease; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__button:hover { transform:translateY(-3px);opacity:.9; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__button:disabled { opacity:.45;cursor:not-allowed; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__text-link { display:inline-block;color:inherit;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:5px;margin-top:18px;font-size:12px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__hero { min-height:var(--bw-height);position:relative;display:flex;align-items:flex-end;isolation:isolate;overflow:hidden;background:var(--bw-bg);color:#fff; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__picture,#BW-{{ kind }}-{{ section.id }} .bw-builder__shade { position:absolute;inset:0;z-index:-1; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__picture img { width:100%;height:100%;object-fit:cover;object-position:{{ section.settings.image_position }};display:block; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__shade { background:linear-gradient(90deg,rgba(30,22,16,var(--bw-overlay)),rgba(30,22,16,calc(var(--bw-overlay)*.25))); }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__content--hero { width:min(900px,90%);padding:clamp(70px,10vw,150px) 7vw 90px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__split { display:grid;grid-template-columns:1fr 1fr;align-items:stretch; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__media { min-height:480px;overflow:hidden; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__media img { width:100%;height:100%;min-height:480px;object-fit:cover;display:block; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__product-form { display:flex;flex-wrap:wrap;gap:12px;margin-top:18px; }
+  #BW-{{ kind }}-{{ section.id }} select,#BW-{{ kind }}-{{ section.id }} input[type=email] { min-height:50px;padding:0 14px;border:1px solid currentColor;background:transparent;color:inherit;max-width:100%; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__price { font-size:18px;margin:16px 0 0; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__section-heading { text-align:center;max-width:760px;margin:0 auto 42px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__cards { display:grid;grid-template-columns:repeat(var(--bw-columns),minmax(0,1fr));gap:clamp(18px,3vw,42px);margin-top:48px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card { min-width:0;padding:20px 0; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card img { width:100%;height:auto;display:block;margin-bottom:20px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__product-grid { display:grid;grid-template-columns:repeat(var(--bw-columns),minmax(0,1fr));gap:22px;margin:35px 0; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__product-card { display:flex;flex-direction:column;gap:10px;color:inherit;text-decoration:none; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__product-card img { width:100%;aspect-ratio:4/5;object-fit:cover; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__announcement { display:flex;justify-content:center;align-items:center;gap:20px;padding:13px 18px;text-align:center;background:var(--bw-fg);color:var(--bw-bg);font-size:11px;letter-spacing:.1em; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__announcement a { color:inherit; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__newsletter { display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:25px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__newsletter input { min-width:min(280px,100%); }
+  #BW-{{ kind }}-{{ section.id }}.bw-motion--fade .bw-builder__content,#BW-{{ kind }}-{{ section.id }}.bw-motion--rise .bw-builder__content,#BW-{{ kind }}-{{ section.id }}.bw-motion--zoom .bw-builder__content { animation:bw-builder-in .8s both; }
+  #BW-{{ kind }}-{{ section.id }}.bw-motion--rise .bw-builder__content { animation-name:bw-builder-rise; }
+  #BW-{{ kind }}-{{ section.id }}.bw-motion--zoom .bw-builder__content { animation-name:bw-builder-zoom; }
+  @keyframes bw-builder-in { from{opacity:0}to{opacity:1} } @keyframes bw-builder-rise { from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none} } @keyframes bw-builder-zoom { from{opacity:0;transform:scale(.97)}to{opacity:1;transform:none} }
+  @media(max-width:749px) { #BW-{{ kind }}-{{ section.id }} .bw-builder__split { grid-template-columns:1fr; } #BW-{{ kind }}-{{ section.id }} .bw-builder__media,#BW-{{ kind }}-{{ section.id }} .bw-builder__media img { min-height:360px; } #BW-{{ kind }}-{{ section.id }} .bw-builder__cards,#BW-{{ kind }}-{{ section.id }} .bw-builder__product-grid { grid-template-columns:repeat(min(var(--bw-columns),2),minmax(0,1fr)); } #BW-{{ kind }}-{{ section.id }} .bw-builder__content--hero { padding:80px 7vw; } }
+  @media(prefers-reduced-motion:reduce) { #BW-{{ kind }}-{{ section.id }} *,#BW-{{ kind }}-{{ section.id }} *::before { animation:none!important;transition:none!important;scroll-behavior:auto!important; } }
+</style>
