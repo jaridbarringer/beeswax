@@ -4,8 +4,12 @@
     assign section_bg = section.settings.background_color
   endif
   assign section_product = section.settings.product
+  if section_product == blank
+    assign section_product = all_products['reusable-beeswax-bread-bag']
+  endif
   assign section_collection = section.settings.collection
   assign hero_image = section.settings.image | default: section_product.featured_image
+  assign section_image = section.settings.image | default: section_product.featured_image
 -%}
 <section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};{% if section.settings.background_image != blank %}background-image:{% if section.settings.overlay_gradient != blank %}{{ section.settings.overlay_gradient }},{% endif %}url('{{ section.settings.background_image | image_url: width: 2400 }}');background-size:cover;background-position:{{ section.settings.image_position }};{% endif %}">
   {%- case kind -%}
@@ -81,9 +85,9 @@
       </div>
     {%- else -%}
       <div class="bw-builder__inner">
-        {%- if section.settings.image != blank and kind == 'image-text' or section.settings.image != blank and kind == 'story' -%}
+        {%- if section_image != blank and kind == 'image-text' or section_image != blank and kind == 'story' -%}
           <div class="bw-builder__split">
-            <div class="bw-builder__media">{{ section.settings.image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: section.settings.image.alt, class: 'bw-parallax-image' }}</div>
+            <div class="bw-builder__media">{{ section_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', loading: 'lazy', alt: section_image.alt, class: 'bw-parallax-image' }}</div>
             <div class="bw-builder__content">
               {%- if section.settings.eyebrow != blank -%}<p class="bw-builder__eyebrow">{{ section.settings.eyebrow | escape }}</p>{%- endif -%}
               {%- if section.settings.heading != blank -%}<h2>{{ section.settings.heading }}</h2>{%- endif -%}
