@@ -1,8 +1,9 @@
 (() => {
+  const config = window.BeeswaxBuilderSettings || {};
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const revealEnabled = {{ settings.bw_enable_scroll_reveal | json }};
-  const parallaxEnabled = {{ settings.bw_enable_parallax | json }};
-  const strength = Number('{{ settings.bw_parallax_strength }}') || 16;
+  const revealEnabled = config.reveal !== false;
+  const parallaxEnabled = config.parallax !== false;
+  const strength = Number(config.strength) || 16;
   const init = () => {
     if (!reduced && revealEnabled && 'IntersectionObserver' in window) {
       const observer = new IntersectionObserver((entries) => entries.forEach((entry) => {
