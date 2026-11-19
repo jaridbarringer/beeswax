@@ -72,6 +72,7 @@
         --bw-heading-font: {{ settings.bw_heading_font.family }}, {{ settings.bw_heading_font.fallback_families }};
         --bw-body-font: {{ settings.bw_body_font.family }}, {{ settings.bw_body_font.fallback_families }};
         --bw-body-size: {{ settings.bw_body_size }}px;
+        --bw-global-spacing-factor: {{ settings.bw_section_spacing | divided_by: 72.0 }};
         --font-heading-scale: {{ settings.bw_heading_scale | divided_by: 100.0 }};
         --bw-content-width: {{ settings.bw_content_width }}px;
         --bw-button-radius: {{ settings.bw_button_radius }}px;
