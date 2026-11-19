@@ -1,1 +1,55 @@
-{"sections":{"image_banner":{"type":"image-banner","blocks":{"heading":{"type":"heading","settings":{"heading":"Beeswax Bread Bags","heading_size":"h0"}},"button":{"type":"buttons","settings":{"button_label_1":"Shop all","button_link_1":"shopify:\/\/collections\/all","button_style_secondary_1":true,"button_label_2":"","button_link_2":"","button_style_secondary_2":false}}},"block_order":["heading","button"],"custom_css":[],"settings":{"image":"shopify:\/\/shop_images\/image.jpg","image_overlay_opacity":30,"image_height":"large","image_behavior":"none","desktop_content_position":"bottom-center","desktop_content_alignment":"center","show_text_box":false,"color_scheme":"scheme-3","stack_images_on_mobile":false,"mobile_content_alignment":"center","show_text_below":false}},"featured_collection":{"type":"featured-collection","settings":{"collection":"all","products_to_show":8,"title":"Featured products","heading_size":"h2","description":"","show_description":false,"description_style":"body","columns_desktop":4,"enable_desktop_slider":false,"full_width":false,"show_view_all":true,"view_all_style":"solid","color_scheme":"scheme-1","image_ratio":"adapt","image_shape":"default","show_secondary_image":true,"show_vendor":false,"show_rating":false,"quick_add":"none","columns_mobile":"2","swipe_on_mobile":false,"padding_top":44,"padding_bottom":36}}},"order":["image_banner","featured_collection"]}
+{
+  "sections": {
+    "beeswax_home": {
+      "type": "beeswax-editorial-home",
+      "settings": {
+        "announcement": "A slower, simpler way to keep bread fresh",
+        "hero_height": 82,
+        "hero_eyebrow": "The everyday bread ritual",
+        "hero_heading": "A little more care for the things we love.",
+        "hero_copy": "<p>A thoughtfully made beeswax bread bag for fresh loaves, slow mornings, and a kitchen that feels like home.</p>",
+        "hero_button_label": "Discover the bread bag",
+        "hero_note": "Made for the moments around the table",
+        "intro_eyebrow": "Simple by nature",
+        "intro_heading": "Good bread deserves a good place to call home.",
+        "intro_copy": "<p>Bring a little intention back to your kitchen with a reusable bread bag made for the loaves you love and the everyday rituals around them.</p>",
+        "product_stamp": "The daily bread essential",
+        "product_eyebrow": "Meet your new kitchen staple",
+        "product_heading": "The Beeswax Bread Bag",
+        "product_copy": "<p>Made for the loaf on your counter. A reusable, easygoing alternative to disposable bread storage, with a warm, natural look that belongs in your kitchen.</p>",
+        "add_to_cart_label": "Add to cart",
+        "product_small_note": "A thoughtful little upgrade for your kitchen",
+        "values_eyebrow": "Less throwaway. More everyday.",
+        "values_heading": "Made to fit the rhythm of home.",
+        "value_1_title": "Reusable by design",
+        "value_1_copy": "A simple swap for single-use bread bags, made to be part of your regular kitchen routine.",
+        "value_2_title": "Room for your loaf",
+        "value_2_copy": "Generously sized at 16 × 14 inches, with room for the breads you bring home.",
+        "value_3_title": "A natural look",
+        "value_3_copy": "Warm, understated style that looks right at home on your counter or at the table.",
+        "story_eyebrow": "The little things matter",
+        "story_heading": "Keep the good things close.",
+        "story_copy": "<p>There is something special about bringing home a fresh loaf. The paper crackle, the first slice, the smell that fills the kitchen. We believe the things we use every day should feel just as thoughtful.</p><p>Our bread bag was created to make that small daily ritual feel a little more considered.</p>",
+        "story_link_label": "Explore the bread bag",
+        "lifestyle_eyebrow": "A place in your kitchen",
+        "lifestyle_heading": "For the everyday, and everything around it.",
+        "lifestyle_caption": "The simple pleasures of home",
+        "brand_eyebrow": "A more thoughtful kitchen",
+        "brand_heading": "Made for the love of good bread.",
+        "brand_copy": "<p>We are drawn to the simple things: honest materials, useful objects, and the comfort of a loaf shared around the table. This is our small contribution to a more thoughtful everyday.</p>",
+        "brand_button_label": "Bring one home",
+        "final_eyebrow": "Your kitchen, a little more considered",
+        "final_heading": "Make room for the good stuff.",
+        "final_copy": "A fresh loaf. A familiar ritual. A better everyday bread bag.",
+        "final_button_label": "Shop the bread bag",
+        "ink_color": "#33251D",
+        "cream_color": "#F5F0E6",
+        "paper_color": "#FBF8F1",
+        "accent_color": "#B8875B"
+      }
+    }
+  },
+  "order": [
+    "beeswax_home"
+  ]
+}

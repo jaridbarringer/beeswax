@@ -1,0 +1,344 @@
+{%- liquid
+  assign featured_product = section.settings.product
+  if featured_product == blank
+    assign featured_product = collections.all.products.first
+  endif
+-%}
+
+<section class="bw-home" id="BeeswaxHome-{{ section.id }}">
+  <div class="bw-announcement">
+    <span>{{ section.settings.announcement | escape }}</span>
+  </div>
+
+  <div class="bw-hero">
+    <div class="bw-hero__image">
+      {%- if section.settings.hero_image != blank -%}
+        {{ section.settings.hero_image | image_url: width: 2400 | image_tag: widths: '750, 1100, 1500, 2000, 2400', sizes: '100vw', loading: 'eager', fetchpriority: 'high', alt: section.settings.hero_image.alt }}
+      {%- endif -%}
+    </div>
+    <div class="bw-hero__shade"></div>
+    <div class="bw-hero__content">
+      <p class="bw-eyebrow">{{ section.settings.hero_eyebrow | escape }}</p>
+      <h1>{{ section.settings.hero_heading }}</h1>
+      <div class="bw-hero__copy">{{ section.settings.hero_copy }}</div>
+      {%- if section.settings.hero_button_label != blank -%}
+        <a class="bw-button bw-button--light" href="{{ section.settings.hero_button_link | default: '#bw-product' }}">{{ section.settings.hero_button_label | escape }} <span aria-hidden="true">↗</span></a>
+      {%- endif -%}
+    </div>
+    <div class="bw-hero__note">{{ section.settings.hero_note | escape }}</div>
+  </div>
+
+  <div class="bw-intro bw-container">
+    <p class="bw-eyebrow">{{ section.settings.intro_eyebrow | escape }}</p>
+    <h2>{{ section.settings.intro_heading }}</h2>
+    <div class="bw-intro__copy">{{ section.settings.intro_copy }}</div>
+  </div>
+
+  <div class="bw-product" id="bw-product">
+    <div class="bw-product__visual">
+      {%- if section.settings.product_image != blank -%}
+        {{ section.settings.product_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'lazy', alt: section.settings.product_image.alt }}
+      {%- elsif featured_product != blank and featured_product.featured_image != blank -%}
+        {{ featured_product.featured_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'lazy', alt: featured_product.title }}
+      {%- else -%}
+        <div class="bw-image-placeholder"><span>Made for the everyday ritual.</span></div>
+      {%- endif -%}
+      <span class="bw-product__stamp">{{ section.settings.product_stamp | escape }}</span>
+    </div>
+    <div class="bw-product__details">
+      <p class="bw-eyebrow">{{ section.settings.product_eyebrow | escape }}</p>
+      <h2>{% if section.settings.product_heading != blank %}{{ section.settings.product_heading }}{% elsif featured_product != blank %}{{ featured_product.title | escape }}{% else %}The Beeswax Bread Bag{% endif %}</h2>
+      <div class="bw-product__copy">{{ section.settings.product_copy }}</div>
+      {%- if featured_product != blank -%}
+        <div class="bw-product__price">{{ featured_product.price | money }}</div>
+        {%- form 'product', featured_product, class: 'bw-product-form' -%}
+          <input type="hidden" name="id" value="{{ featured_product.selected_or_first_available_variant.id }}">
+          <input type="hidden" name="quantity" value="1">
+          <button class="bw-button bw-button--dark" type="submit" name="add" {% unless featured_product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+            {%- if featured_product.selected_or_first_available_variant.available -%}{{ section.settings.add_to_cart_label | escape }}{%- else -%}Sold out{%- endif -%}
+            <span aria-hidden="true">↗</span>
+          </button>
+        {%- endform -%}
+        <a class="bw-text-link" href="{{ featured_product.url }}">View product details <span aria-hidden="true">→</span></a>
+      {%- else -%}
+        <p class="bw-editor-note">Choose a product in this section’s settings to activate the shop button.</p>
+      {%- endif -%}
+      <div class="bw-product__small">{{ section.settings.product_small_note | escape }}</div>
+    </div>
+  </div>
+
+  <div class="bw-values bw-container">
+    <div class="bw-values__heading">
+      <p class="bw-eyebrow">{{ section.settings.values_eyebrow | escape }}</p>
+      <h2>{{ section.settings.values_heading }}</h2>
+    </div>
+    <div class="bw-values__grid">
+      <article class="bw-value">
+        <span class="bw-value__number">01</span>
+        <h3>{{ section.settings.value_1_title | escape }}</h3>
+        <p>{{ section.settings.value_1_copy | escape }}</p>
+      </article>
+      <article class="bw-value">
+        <span class="bw-value__number">02</span>
+        <h3>{{ section.settings.value_2_title | escape }}</h3>
+        <p>{{ section.settings.value_2_copy | escape }}</p>
+      </article>
+      <article class="bw-value">
+        <span class="bw-value__number">03</span>
+        <h3>{{ section.settings.value_3_title | escape }}</h3>
+        <p>{{ section.settings.value_3_copy | escape }}</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="bw-story">
+    <div class="bw-story__image">
+      {%- if section.settings.story_image != blank -%}
+        {{ section.settings.story_image | image_url: width: 1800 | image_tag: widths: '600, 900, 1200, 1600, 1800', sizes: '(min-width: 900px) 55vw, 100vw', loading: 'lazy', alt: section.settings.story_image.alt }}
+      {%- endif -%}
+    </div>
+    <div class="bw-story__panel">
+      <p class="bw-eyebrow">{{ section.settings.story_eyebrow | escape }}</p>
+      <h2>{{ section.settings.story_heading }}</h2>
+      <div class="bw-story__copy">{{ section.settings.story_copy }}</div>
+      {%- if section.settings.story_link_label != blank -%}
+        <a class="bw-text-link" href="{{ section.settings.story_link | default: '#bw-product' }}">{{ section.settings.story_link_label | escape }} <span aria-hidden="true">→</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="bw-lifestyle bw-container">
+    <div class="bw-lifestyle__head">
+      <p class="bw-eyebrow">{{ section.settings.lifestyle_eyebrow | escape }}</p>
+      <h2>{{ section.settings.lifestyle_heading }}</h2>
+    </div>
+    <div class="bw-lifestyle__image">
+      {%- if section.settings.lifestyle_image != blank -%}
+        {{ section.settings.lifestyle_image | image_url: width: 2200 | image_tag: widths: '750, 1100, 1500, 1800, 2200', sizes: '100vw', loading: 'lazy', alt: section.settings.lifestyle_image.alt }}
+      {%- endif -%}
+      <div class="bw-lifestyle__caption">{{ section.settings.lifestyle_caption | escape }}</div>
+    </div>
+  </div>
+
+  <div class="bw-brand">
+    <div class="bw-brand__image">
+      {%- if section.settings.brand_image != blank -%}
+        {{ section.settings.brand_image | image_url: width: 1600 | image_tag: widths: '600, 900, 1200, 1600', sizes: '(min-width: 900px) 50vw, 100vw', loading: 'lazy', alt: section.settings.brand_image.alt }}
+      {%- endif -%}
+    </div>
+    <div class="bw-brand__content">
+      <p class="bw-eyebrow">{{ section.settings.brand_eyebrow | escape }}</p>
+      <h2>{{ section.settings.brand_heading }}</h2>
+      <div class="bw-brand__copy">{{ section.settings.brand_copy }}</div>
+      {%- if section.settings.brand_button_label != blank -%}
+        <a class="bw-button bw-button--light" href="{{ section.settings.brand_button_link | default: '#bw-product' }}">{{ section.settings.brand_button_label | escape }} <span aria-hidden="true">↗</span></a>
+      {%- endif -%}
+    </div>
+  </div>
+
+  <div class="bw-final">
+    <p class="bw-eyebrow">{{ section.settings.final_eyebrow | escape }}</p>
+    <h2>{{ section.settings.final_heading }}</h2>
+    <p>{{ section.settings.final_copy | escape }}</p>
+    {%- if featured_product != blank -%}
+      <a class="bw-button bw-button--dark" href="{{ featured_product.url }}">{{ section.settings.final_button_label | escape }} <span aria-hidden="true">↗</span></a>
+    {%- endif -%}
+  </div>
+</section>
+
+<style>
+  #BeeswaxHome-{{ section.id }} {
+    --bw-ink: {{ section.settings.ink_color }};
+    --bw-cream: {{ section.settings.cream_color }};
+    --bw-paper: {{ section.settings.paper_color }};
+    --bw-caramel: {{ section.settings.accent_color }};
+    color: var(--bw-ink);
+    background: var(--bw-paper);
+    font-family: var(--font-body-family);
+    overflow: hidden;
+  }
+  #BeeswaxHome-{{ section.id }} * { box-sizing: border-box; }
+  #BeeswaxHome-{{ section.id }} .bw-announcement {
+    background: var(--bw-ink); color: var(--bw-cream); text-align: center;
+    padding: 11px 18px; font-size: 10px; letter-spacing: .19em; text-transform: uppercase;
+  }
+  #BeeswaxHome-{{ section.id }} .bw-hero {
+    min-height: {{ section.settings.hero_height }}vh; position: relative; display: flex;
+    align-items: flex-end; background: #66513d; color: #fff; isolation: isolate;
+  }
+  #BeeswaxHome-{{ section.id }} .bw-hero__image,
+  #BeeswaxHome-{{ section.id }} .bw-hero__shade { position: absolute; inset: 0; z-index: -1; }
+  #BeeswaxHome-{{ section.id }} .bw-hero__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  #BeeswaxHome-{{ section.id }} .bw-hero__shade {
+    background: linear-gradient(90deg, rgba(28,19,13,.68), rgba(28,19,13,.24) 58%, rgba(28,19,13,.08)),
+      linear-gradient(0deg, rgba(28,19,13,.24), transparent 55%);
+  }
+  #BeeswaxHome-{{ section.id }} .bw-hero__content { width: min(820px, 90%); padding: clamp(65px, 10vw, 145px) 8vw 100px; }
+  #BeeswaxHome-{{ section.id }} .bw-eyebrow { font-size: 10px; font-weight: 600; letter-spacing: .22em; line-height: 1.5; text-transform: uppercase; margin: 0 0 22px; }
+  #BeeswaxHome-{{ section.id }} h1,
+  #BeeswaxHome-{{ section.id }} h2,
+  #BeeswaxHome-{{ section.id }} h3 { font-family: var(--font-heading-family, Georgia, serif); font-weight: 400; letter-spacing: -.045em; }
+  #BeeswaxHome-{{ section.id }} .bw-hero h1 { font-size: clamp(48px, 7.8vw, 112px); line-height: .98; max-width: 850px; margin: 0 0 25px; color: #fff; }
+  #BeeswaxHome-{{ section.id }} .bw-hero__copy { max-width: 470px; font-size: clamp(14px, 1.3vw, 17px); line-height: 1.8; color: rgba(255,255,255,.9); margin-bottom: 30px; }
+  #BeeswaxHome-{{ section.id }} .bw-hero__copy p { margin: 0; }
+  #BeeswaxHome-{{ section.id }} .bw-hero__note { position: absolute; right: 4vw; bottom: 30px; font-size: 9px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.8); }
+  #BeeswaxHome-{{ section.id }} .bw-button { min-height: 52px; padding: 0 25px; display: inline-flex; align-items: center; justify-content: space-between; gap: 32px; text-decoration: none; text-transform: uppercase; letter-spacing: .13em; font-size: 10px; font-weight: 600; border: 1px solid transparent; transition: transform .25s ease, background .25s ease; cursor: pointer; }
+  #BeeswaxHome-{{ section.id }} .bw-button:hover { transform: translateY(-3px); }
+  #BeeswaxHome-{{ section.id }} .bw-button--light { background: var(--bw-cream); color: var(--bw-ink); }
+  #BeeswaxHome-{{ section.id }} .bw-button--dark { background: var(--bw-ink); color: var(--bw-cream); }
+  #BeeswaxHome-{{ section.id }} .bw-container { width: min(1240px, 86%); margin-inline: auto; }
+  #BeeswaxHome-{{ section.id }} .bw-intro { text-align: center; padding-top: clamp(85px, 11vw, 150px); padding-bottom: clamp(80px, 10vw, 130px); }
+  #BeeswaxHome-{{ section.id }} .bw-intro h2 { font-size: clamp(36px, 5vw, 66px); line-height: 1.08; max-width: 850px; margin: 0 auto 24px; }
+  #BeeswaxHome-{{ section.id }} .bw-intro__copy { max-width: 620px; margin: auto; color: rgba(45,34,25,.75); font-size: 15px; line-height: 1.9; }
+  #BeeswaxHome-{{ section.id }} .bw-intro__copy p { margin: 0; }
+  #BeeswaxHome-{{ section.id }} .bw-product { display: grid; grid-template-columns: 1.08fr .92fr; background: var(--bw-cream); }
+  #BeeswaxHome-{{ section.id }} .bw-product__visual { min-height: 620px; position: relative; background: #e7ddca; }
+  #BeeswaxHome-{{ section.id }} .bw-product__visual img { width: 100%; height: 100%; position: absolute; inset: 0; object-fit: cover; }
+  #BeeswaxHome-{{ section.id }} .bw-product__stamp { position: absolute; left: 30px; bottom: 30px; background: var(--bw-cream); color: var(--bw-ink); border-radius: 50%; width: 95px; height: 95px; display: grid; place-items: center; text-align: center; padding: 14px; font-size: 9px; line-height: 1.4; letter-spacing: .12em; text-transform: uppercase; }
+  #BeeswaxHome-{{ section.id }} .bw-product__details { padding: clamp(45px, 8vw, 110px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  #BeeswaxHome-{{ section.id }} .bw-product__details h2 { font-size: clamp(40px, 5vw, 68px); line-height: 1.02; margin: 0 0 25px; }
+  #BeeswaxHome-{{ section.id }} .bw-product__copy { font-size: 14px; line-height: 1.9; color: rgba(45,34,25,.76); max-width: 430px; }
+  #BeeswaxHome-{{ section.id }} .bw-product__copy p { margin: 0 0 12px; }
+  #BeeswaxHome-{{ section.id }} .bw-product__price { font-size: 16px; margin: 22px 0; }
+  #BeeswaxHome-{{ section.id }} .bw-product-form { margin-bottom: 18px; }
+  #BeeswaxHome-{{ section.id }} .bw-product-form button:disabled { opacity: .45; cursor: not-allowed; }
+  #BeeswaxHome-{{ section.id }} .bw-text-link { color: var(--bw-ink); text-decoration: none; font-size: 11px; letter-spacing: .08em; border-bottom: 1px solid currentColor; padding-bottom: 5px; }
+  #BeeswaxHome-{{ section.id }} .bw-product__small { margin-top: 35px; font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: #806b56; }
+  #BeeswaxHome-{{ section.id }} .bw-values { padding-top: clamp(85px, 10vw, 135px); padding-bottom: clamp(85px, 10vw, 135px); }
+  #BeeswaxHome-{{ section.id }} .bw-values__heading { text-align: center; margin-bottom: 65px; }
+  #BeeswaxHome-{{ section.id }} .bw-values__heading h2 { font-size: clamp(38px, 5vw, 64px); margin: 0; }
+  #BeeswaxHome-{{ section.id }} .bw-values__grid { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid rgba(45,34,25,.25); }
+  #BeeswaxHome-{{ section.id }} .bw-value { padding: 30px 34px 0 0; }
+  #BeeswaxHome-{{ section.id }} .bw-value + .bw-value { border-left: 1px solid rgba(45,34,25,.2); padding-left: 34px; }
+  #BeeswaxHome-{{ section.id }} .bw-value__number { font-size: 10px; letter-spacing: .18em; color: #9a7650; }
+  #BeeswaxHome-{{ section.id }} .bw-value h3 { font-size: 27px; margin: 28px 0 12px; }
+  #BeeswaxHome-{{ section.id }} .bw-value p { font-size: 13px; line-height: 1.8; color: rgba(45,34,25,.72); margin: 0; }
+  #BeeswaxHome-{{ section.id }} .bw-story { display: grid; grid-template-columns: 1.1fr .9fr; background: #e8dfcf; }
+  #BeeswaxHome-{{ section.id }} .bw-story__image { min-height: 570px; }
+  #BeeswaxHome-{{ section.id }} .bw-story__image img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  #BeeswaxHome-{{ section.id }} .bw-story__panel { padding: clamp(45px, 7vw, 95px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  #BeeswaxHome-{{ section.id }} .bw-story__panel h2 { font-size: clamp(40px, 5vw, 65px); line-height: 1.02; margin: 0 0 25px; }
+  #BeeswaxHome-{{ section.id }} .bw-story__copy { font-size: 14px; line-height: 1.9; color: rgba(45,34,25,.75); margin-bottom: 25px; }
+  #BeeswaxHome-{{ section.id }} .bw-story__copy p { margin: 0 0 14px; }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle { padding-top: clamp(85px, 10vw, 130px); padding-bottom: clamp(85px, 10vw, 130px); }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle__head { text-align: center; margin-bottom: 42px; }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle__head h2 { font-size: clamp(38px, 5vw, 64px); margin: 0; }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle__image { position: relative; min-height: 420px; background: #d8c8b1; }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle__image img { width: 100%; height: 100%; min-height: 420px; object-fit: cover; display: block; }
+  #BeeswaxHome-{{ section.id }} .bw-lifestyle__caption { position: absolute; bottom: 22px; right: 22px; background: rgba(248,244,235,.9); padding: 12px 16px; font-size: 9px; letter-spacing: .14em; text-transform: uppercase; }
+  #BeeswaxHome-{{ section.id }} .bw-brand { display: grid; grid-template-columns: 1fr 1fr; background: var(--bw-ink); color: var(--bw-cream); }
+  #BeeswaxHome-{{ section.id }} .bw-brand__image { min-height: 530px; }
+  #BeeswaxHome-{{ section.id }} .bw-brand__image img { width: 100%; height: 100%; display: block; object-fit: cover; }
+  #BeeswaxHome-{{ section.id }} .bw-brand__content { padding: clamp(50px, 8vw, 110px); display: flex; flex-direction: column; justify-content: center; align-items: flex-start; }
+  #BeeswaxHome-{{ section.id }} .bw-brand__content h2 { font-size: clamp(40px, 5vw, 66px); line-height: 1.03; margin: 0 0 25px; color: var(--bw-cream); }
+  #BeeswaxHome-{{ section.id }} .bw-brand__copy { font-size: 14px; line-height: 1.9; color: rgba(248,244,235,.76); margin-bottom: 30px; }
+  #BeeswaxHome-{{ section.id }} .bw-brand__copy p { margin: 0 0 12px; }
+  #BeeswaxHome-{{ section.id }} .bw-final { padding: clamp(85px, 11vw, 150px) 20px; text-align: center; background: var(--bw-cream); }
+  #BeeswaxHome-{{ section.id }} .bw-final h2 { font-size: clamp(42px, 6vw, 76px); line-height: 1; max-width: 850px; margin: 0 auto 22px; }
+  #BeeswaxHome-{{ section.id }} .bw-final > p:not(.bw-eyebrow) { font-size: 14px; color: rgba(45,34,25,.72); margin: 0 auto 30px; }
+  #BeeswaxHome-{{ section.id }} .bw-image-placeholder { height: 100%; min-height: 500px; display: grid; place-items: center; color: #7c6248; font-family: Georgia,serif; font-size: 30px; text-align: center; padding: 30px; }
+  #BeeswaxHome-{{ section.id }} .bw-editor-note { font-size: 12px; opacity: .7; }
+  @media (max-width: 749px) {
+    #BeeswaxHome-{{ section.id }} .bw-hero { min-height: 76vh; }
+    #BeeswaxHome-{{ section.id }} .bw-hero__content { padding: 80px 7vw 95px; }
+    #BeeswaxHome-{{ section.id }} .bw-hero__shade { background: linear-gradient(0deg, rgba(28,19,13,.72), rgba(28,19,13,.08) 90%); }
+    #BeeswaxHome-{{ section.id }} .bw-hero__note { display: none; }
+    #BeeswaxHome-{{ section.id }} .bw-container { width: 88%; }
+    #BeeswaxHome-{{ section.id }} .bw-product,
+    #BeeswaxHome-{{ section.id }} .bw-story,
+    #BeeswaxHome-{{ section.id }} .bw-brand { grid-template-columns: 1fr; }
+    #BeeswaxHome-{{ section.id }} .bw-product__visual { min-height: 430px; }
+    #BeeswaxHome-{{ section.id }} .bw-product__details { padding: 55px 8%; }
+    #BeeswaxHome-{{ section.id }} .bw-values__grid { grid-template-columns: 1fr; }
+    #BeeswaxHome-{{ section.id }} .bw-value { padding: 25px 0; }
+    #BeeswaxHome-{{ section.id }} .bw-value + .bw-value { border-left: 0; border-top: 1px solid rgba(45,34,25,.2); padding-left: 0; }
+    #BeeswaxHome-{{ section.id }} .bw-story__image { min-height: 390px; }
+    #BeeswaxHome-{{ section.id }} .bw-story__panel { padding: 55px 8%; }
+    #BeeswaxHome-{{ section.id }} .bw-lifestyle__image,
+    #BeeswaxHome-{{ section.id }} .bw-lifestyle__image img { min-height: 300px; }
+    #BeeswaxHome-{{ section.id }} .bw-brand__image { min-height: 370px; }
+    #BeeswaxHome-{{ section.id }} .bw-brand__content { padding: 55px 8%; }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    #BeeswaxHome-{{ section.id }} .bw-product__visual img,
+    #BeeswaxHome-{{ section.id }} .bw-story__image img,
+    #BeeswaxHome-{{ section.id }} .bw-lifestyle__image img { transition: transform .8s cubic-bezier(.2,.7,.2,1); }
+    #BeeswaxHome-{{ section.id }} .bw-product__visual:hover img,
+    #BeeswaxHome-{{ section.id }} .bw-story__image:hover img,
+    #BeeswaxHome-{{ section.id }} .bw-lifestyle__image:hover img { transform: scale(1.025); }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Beeswax editorial home",
+  "tag": "section",
+  "class": "section-beeswax-home",
+  "settings": [
+    { "type": "text", "id": "announcement", "label": "Announcement bar", "default": "A slower, simpler way to keep bread fresh" },
+    { "type": "header", "content": "Hero" },
+    { "type": "image_picker", "id": "hero_image", "label": "Hero photograph" },
+    { "type": "range", "id": "hero_height", "min": 55, "max": 100, "step": 5, "unit": "vh", "label": "Hero height", "default": 82 },
+    { "type": "text", "id": "hero_eyebrow", "label": "Eyebrow", "default": "The everyday bread ritual" },
+    { "type": "inline_richtext", "id": "hero_heading", "label": "Heading", "default": "A little more care for the things we love." },
+    { "type": "richtext", "id": "hero_copy", "label": "Text", "default": "<p>A thoughtfully made beeswax bread bag for fresh loaves, slow mornings, and a kitchen that feels like home.</p>" },
+    { "type": "text", "id": "hero_button_label", "label": "Button label", "default": "Discover the bread bag" },
+    { "type": "url", "id": "hero_button_link", "label": "Button link" },
+    { "type": "text", "id": "hero_note", "label": "Small image note", "default": "Made for the moments around the table" },
+    { "type": "header", "content": "Introduction" },
+    { "type": "text", "id": "intro_eyebrow", "label": "Eyebrow", "default": "Simple by nature" },
+    { "type": "inline_richtext", "id": "intro_heading", "label": "Heading", "default": "Good bread deserves a good place to call home." },
+    { "type": "richtext", "id": "intro_copy", "label": "Text", "default": "<p>Bring a little intention back to your kitchen with a reusable bread bag made for the loaves you love and the everyday rituals around them.</p>" },
+    { "type": "header", "content": "Featured product" },
+    { "type": "product", "id": "product", "label": "Product to feature" },
+    { "type": "image_picker", "id": "product_image", "label": "Product photograph (overrides product image)" },
+    { "type": "text", "id": "product_stamp", "label": "Image stamp", "default": "The daily bread essential" },
+    { "type": "text", "id": "product_eyebrow", "label": "Eyebrow", "default": "Meet your new kitchen staple" },
+    { "type": "inline_richtext", "id": "product_heading", "label": "Custom heading (optional)", "default": "The Beeswax Bread Bag" },
+    { "type": "richtext", "id": "product_copy", "label": "Product text", "default": "<p>Made for the loaf on your counter. A reusable, easygoing alternative to disposable bread storage, with a warm, natural look that belongs in your kitchen.</p>" },
+    { "type": "text", "id": "add_to_cart_label", "label": "Add to cart button", "default": "Add to cart" },
+    { "type": "text", "id": "product_small_note", "label": "Small note", "default": "A thoughtful little upgrade for your kitchen" },
+    { "type": "header", "content": "Three reasons" },
+    { "type": "text", "id": "values_eyebrow", "label": "Eyebrow", "default": "Less throwaway. More everyday." },
+    { "type": "inline_richtext", "id": "values_heading", "label": "Heading", "default": "Made to fit the rhythm of home." },
+    { "type": "text", "id": "value_1_title", "label": "First title", "default": "Reusable by design" },
+    { "type": "textarea", "id": "value_1_copy", "label": "First description", "default": "A simple swap for single-use bread bags, made to be part of your regular kitchen routine." },
+    { "type": "text", "id": "value_2_title", "label": "Second title", "default": "Room for your loaf" },
+    { "type": "textarea", "id": "value_2_copy", "label": "Second description", "default": "Generously sized at 16 × 14 inches, with room for the breads you bring home." },
+    { "type": "text", "id": "value_3_title", "label": "Third title", "default": "A natural look" },
+    { "type": "textarea", "id": "value_3_copy", "label": "Third description", "default": "Warm, understated style that looks right at home on your counter or at the table." },
+    { "type": "header", "content": "Product story" },
+    { "type": "image_picker", "id": "story_image", "label": "Story photograph" },
+    { "type": "text", "id": "story_eyebrow", "label": "Eyebrow", "default": "The little things matter" },
+    { "type": "inline_richtext", "id": "story_heading", "label": "Heading", "default": "Keep the good things close." },
+    { "type": "richtext", "id": "story_copy", "label": "Text", "default": "<p>There is something special about bringing home a fresh loaf. The paper crackle, the first slice, the smell that fills the kitchen. We believe the things we use every day should feel just as thoughtful.</p><p>Our bread bag was created to make that small daily ritual feel a little more considered.</p>" },
+    { "type": "text", "id": "story_link_label", "label": "Link label", "default": "Explore the bread bag" },
+    { "type": "url", "id": "story_link", "label": "Link" },
+    { "type": "header", "content": "Lifestyle photograph" },
+    { "type": "image_picker", "id": "lifestyle_image", "label": "Wide lifestyle photograph" },
+    { "type": "text", "id": "lifestyle_eyebrow", "label": "Eyebrow", "default": "A place in your kitchen" },
+    { "type": "inline_richtext", "id": "lifestyle_heading", "label": "Heading", "default": "For the everyday, and everything around it." },
+    { "type": "text", "id": "lifestyle_caption", "label": "Photo caption", "default": "The simple pleasures of home" },
+    { "type": "header", "content": "Brand story" },
+    { "type": "image_picker", "id": "brand_image", "label": "Brand photograph" },
+    { "type": "text", "id": "brand_eyebrow", "label": "Eyebrow", "default": "A more thoughtful kitchen" },
+    { "type": "inline_richtext", "id": "brand_heading", "label": "Heading", "default": "Made for the love of good bread." },
+    { "type": "richtext", "id": "brand_copy", "label": "Text", "default": "<p>We are drawn to the simple things: honest materials, useful objects, and the comfort of a loaf shared around the table. This is our small contribution to a more thoughtful everyday.</p>" },
+    { "type": "text", "id": "brand_button_label", "label": "Button label", "default": "Bring one home" },
+    { "type": "url", "id": "brand_button_link", "label": "Button link" },
+    { "type": "header", "content": "Final call to action" },
+    { "type": "text", "id": "final_eyebrow", "label": "Eyebrow", "default": "Your kitchen, a little more considered" },
+    { "type": "inline_richtext", "id": "final_heading", "label": "Heading", "default": "Make room for the good stuff." },
+    { "type": "textarea", "id": "final_copy", "label": "Text", "default": "A fresh loaf. A familiar ritual. A better everyday bread bag." },
+    { "type": "text", "id": "final_button_label", "label": "Button label", "default": "Shop the bread bag" },
+    { "type": "header", "content": "Colors" },
+    { "type": "color", "id": "ink_color", "label": "Espresso", "default": "#33251D" },
+    { "type": "color", "id": "cream_color", "label": "Cream", "default": "#F5F0E6" },
+    { "type": "color", "id": "paper_color", "label": "Warm paper", "default": "#FBF8F1" },
+    { "type": "color", "id": "accent_color", "label": "Caramel accent", "default": "#B8875B" }
+  ],
+  "presets": [
+    { "name": "Beeswax editorial home" }
+  ]
+}
+{% endschema %}
