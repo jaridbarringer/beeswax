@@ -8,6 +8,154 @@
     "theme_support_url": "https://support.shopify.com/"
   },
   {
+    "name": "Beeswax Design Studio",
+    "settings": [
+      {
+        "type": "select",
+        "id": "bw_design_preset",
+        "label": "Starting design preset",
+        "default": "farmhouse",
+        "options": [
+          {
+            "value": "farmhouse",
+            "label": "Farmhouse artisan"
+          },
+          {
+            "value": "organic",
+            "label": "Organic luxury"
+          },
+          {
+            "value": "modern",
+            "label": "Modern minimal"
+          },
+          {
+            "value": "editorial",
+            "label": "Contemporary editorial"
+          }
+        ]
+      },
+      {
+        "type": "font_picker",
+        "id": "bw_heading_font",
+        "label": "Heading font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "font_picker",
+        "id": "bw_body_font",
+        "label": "Body font",
+        "default": "assistant_n4"
+      },
+      {
+        "type": "range",
+        "id": "bw_heading_scale",
+        "label": "Heading scale",
+        "min": 80,
+        "max": 160,
+        "step": 5,
+        "unit": "%",
+        "default": 115
+      },
+      {
+        "type": "range",
+        "id": "bw_body_size",
+        "label": "Body text size",
+        "min": 12,
+        "max": 22,
+        "step": 1,
+        "unit": "px",
+        "default": 15
+      },
+      {
+        "type": "color",
+        "id": "bw_page_background",
+        "label": "Store background",
+        "default": "#FBF8F1"
+      },
+      {
+        "type": "color_background",
+        "id": "bw_page_gradient",
+        "label": "Store background gradient"
+      },
+      {
+        "type": "color",
+        "id": "bw_global_text",
+        "label": "Store text",
+        "default": "#33251D"
+      },
+      {
+        "type": "color",
+        "id": "bw_accent_color",
+        "label": "Accent color",
+        "default": "#9A7650"
+      },
+      {
+        "type": "color",
+        "id": "bw_button_background",
+        "label": "Button background",
+        "default": "#33251D"
+      },
+      {
+        "type": "color",
+        "id": "bw_button_text",
+        "label": "Button text",
+        "default": "#F5F0E6"
+      },
+      {
+        "type": "range",
+        "id": "bw_button_radius",
+        "label": "Button corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "bw_content_width",
+        "label": "Content maximum width",
+        "min": 960,
+        "max": 1800,
+        "step": 40,
+        "unit": "px",
+        "default": 1280
+      },
+      {
+        "type": "range",
+        "id": "bw_section_spacing",
+        "label": "Default section spacing",
+        "min": 0,
+        "max": 180,
+        "step": 8,
+        "unit": "px",
+        "default": 72
+      },
+      {
+        "type": "checkbox",
+        "id": "bw_enable_scroll_reveal",
+        "label": "Enable scroll reveal animations",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "bw_enable_parallax",
+        "label": "Enable parallax effects",
+        "default": true
+      },
+      {
+        "type": "range",
+        "id": "bw_parallax_strength",
+        "label": "Parallax movement strength",
+        "min": 0,
+        "max": 40,
+        "step": 2,
+        "unit": "px",
+        "default": 16
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.logo.name",
     "settings": [
       {
