@@ -7,7 +7,7 @@
   assign section_collection = section.settings.collection
   assign hero_image = section.settings.image | default: section_product.featured_image
 -%}
-<section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};{% if section.settings.background_image != blank %}background-image:url('{{ section.settings.background_image | image_url: width: 2400 }}');background-size:cover;background-position:{{ section.settings.image_position }};{% endif %}">
+<section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};{% if section.settings.background_image != blank %}background-image:{% if section.settings.overlay_gradient != blank %}{{ section.settings.overlay_gradient }},{% endif %}url('{{ section.settings.background_image | image_url: width: 2400 }}');background-size:cover;background-position:{{ section.settings.image_position }};{% endif %}">
   {%- case kind -%}
     {%- when 'announcement' -%}
       <div class="bw-builder__announcement">
@@ -154,7 +154,10 @@
   #BW-{{ kind }}-{{ section.id }} .bw-builder__price { font-size:18px;margin:16px 0 0; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__section-heading { text-align:center;max-width:760px;margin:0 auto 42px; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__cards { display:grid;grid-template-columns:repeat(var(--bw-columns),minmax(0,1fr));gap:clamp(18px,3vw,42px);margin-top:48px; }
-  #BW-{{ kind }}-{{ section.id }} .bw-builder__card { min-width:0;padding:20px 0; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card { min-width:0;padding:20px 0;transition:transform .3s ease,opacity .3s ease; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card:hover { transform:translateY(-5px); }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card img { transition:transform .5s ease; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__card:hover img { transform:scale(1.025); }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__card img { width:100%;height:auto;display:block;margin-bottom:20px; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__product-grid { display:grid;grid-template-columns:repeat(var(--bw-columns),minmax(0,1fr));gap:22px;margin:35px 0; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__product-card { display:flex;flex-direction:column;gap:10px;color:inherit;text-decoration:none; }
