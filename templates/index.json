@@ -24,7 +24,7 @@
         "product": "reusable-beeswax-bread-bag",
         "collection": "",
         "button_link": "",
-        "button_label": "Discover the bread bag",
+        "button_label": "Shop the collection",
         "layout": "full",
         "alignment": "center",
         "image_position": "right center",
@@ -49,7 +49,7 @@
       "settings": {
         "eyebrow": "SIMPLE BY NATURE",
         "heading": "Good bread deserves a good place to call home.",
-        "body": "<p>Bring a little intention back to your kitchen with a reusable bread bag made for the loaves you love and the everyday rituals around them.</p>",
+        "body": "<p>A thoughtfully crafted bread bag featuring a removable beeswax-lined interior designed to help preserve your bread's freshness. Beautifully practical, reusable, and made for the everyday ritual of good bread.</p>",
         "overlay_gradient": "",
         "product": "",
         "collection": "",
@@ -74,7 +74,7 @@
       "settings": {
         "eyebrow": "MEET YOUR NEW KITCHEN STAPLE",
         "heading": "The Beeswax Bread Bag",
-        "body": "<p>Made for the loaf on your counter. A reusable, easygoing alternative to disposable bread storage, with a warm, natural look that belongs in your kitchen.</p>",
+        "body": "<p>There is something special about things made by hand. Each bag is carefully made with love and attention to detail, featuring a removable beeswax-lined interior designed to help care for your bread. No mass production. Just thoughtful craftsmanship, one bag at a time.</p>",
         "overlay_gradient": "",
         "product": "reusable-beeswax-bread-bag",
         "collection": "",
@@ -101,8 +101,8 @@
           "type": "item",
           "settings": {
             "eyebrow": "",
-            "heading": "Reusable by design",
-            "body": "<p>A simple swap for single-use bread bags, made to be part of your regular kitchen routine.</p>",
+            "heading": "Made by Hand",
+            "body": "<p>Each bag is individually handmade with thoughtful attention to detail.</p>",
             "meta": "",
             "link": ""
           }
@@ -121,8 +121,18 @@
           "type": "item",
           "settings": {
             "eyebrow": "",
-            "heading": "A natural look",
-            "body": "<p>Warm, understated style that looks right at home on your counter or at the table.</p>",
+            "heading": "Removable Beeswax Lining",
+            "body": "<p>A thoughtfully designed inner layer that can be removed for separate care.</p>",
+            "meta": "",
+            "link": ""
+          }
+        },
+        "item_LMXzbj": {
+          "type": "item",
+          "settings": {
+            "eyebrow": "",
+            "heading": "Made to Order",
+            "body": "<p>Choose a design and request a bag made especially for you.</p>",
             "meta": "",
             "link": ""
           }
@@ -131,13 +141,19 @@
       "block_order": [
         "benefit_1",
         "benefit_2",
-        "benefit_3"
+        "benefit_3",
+        "item_LMXzbj"
+      ],
+      "custom_css": [
+        "h3 {color: #ffff;}"
       ],
       "settings": {
         "eyebrow": "LESS THROWAWAY. MORE EVERYDAY.",
         "heading": "Made to fit the rhythm of home.",
         "body": "<p>Thoughtful details for the everyday kitchen.</p>",
-        "overlay_gradient": "",
+        "image": "shopify://shop_images/IMG_3031.heic",
+        "background_image": "shopify://shop_images/IMG_3031.heic",
+        "overlay_gradient": "linear-gradient(180deg, rgba(22, 21, 22, 1), rgba(48, 145, 211, 0) 30%)",
         "product": "",
         "collection": "",
         "button_link": "",
@@ -147,12 +163,12 @@
         "image_position": "center center",
         "background_color": "#f5f0e6",
         "background_gradient": "",
-        "text_color": "#33251d",
-        "overlay_opacity": 30,
-        "section_height": 60,
+        "text_color": "#FFFFFF",
+        "overlay_opacity": 65,
+        "section_height": 65,
         "padding_top": 72,
-        "padding_bottom": 72,
-        "motion": "none",
+        "padding_bottom": 80,
+        "motion": "fade",
         "columns": 3
       }
     },
@@ -180,6 +196,46 @@
         "padding_bottom": 72,
         "motion": "none",
         "columns": 3
+      }
+    },
+    "image_with_text_hTJnTJ": {
+      "type": "image-with-text",
+      "blocks": {
+        "heading_pHrAfz": {
+          "type": "heading",
+          "settings": {
+            "heading": "",
+            "heading_size": "h1"
+          }
+        },
+        "text_dJqh8q": {
+          "type": "text",
+          "settings": {
+            "text": "",
+            "text_style": "body"
+          }
+        }
+      },
+      "block_order": [
+        "heading_pHrAfz",
+        "text_dJqh8q"
+      ],
+      "custom_css": [],
+      "name": "t:sections.image-with-text.presets.name",
+      "settings": {
+        "image": "shopify://shop_images/IMG_3032.heic",
+        "height": "adapt",
+        "desktop_image_width": "medium",
+        "layout": "image_first",
+        "image_behavior": "none",
+        "content_layout": "no-overlap",
+        "desktop_content_position": "top",
+        "desktop_content_alignment": "left",
+        "mobile_content_alignment": "left",
+        "section_color_scheme": "scheme-1",
+        "color_scheme": "scheme-1",
+        "padding_top": 36,
+        "padding_bottom": 0
       }
     },
     "bw_gallery": {
@@ -278,7 +334,7 @@
           "settings": {
             "eyebrow": "",
             "heading": "A lovely everyday essential",
-            "body": "<p>Add a customer review here.</p>",
+            "body": "",
             "meta": "★★★★★",
             "link": ""
           }
@@ -288,7 +344,7 @@
           "settings": {
             "eyebrow": "",
             "heading": "Beautiful and practical",
-            "body": "<p>Add a customer review here.</p>",
+            "body": "",
             "meta": "★★★★★",
             "link": ""
           }
@@ -298,7 +354,7 @@
           "settings": {
             "eyebrow": "",
             "heading": "A thoughtful gift",
-            "body": "<p>Add a customer review here.</p>",
+            "body": "",
             "meta": "★★★★★",
             "link": ""
           }
@@ -414,6 +470,7 @@
     "bw_featured_product",
     "bw_benefits",
     "bw_image_text",
+    "image_with_text_hTJnTJ",
     "bw_gallery",
     "bw_story",
     "bw_testimonials",
