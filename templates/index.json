@@ -11,7 +11,9 @@
   "sections": {
     "bw_hero": {
       "type": "beeswax-hero",
-      "custom_css": [],
+      "custom_css": [
+        "h2 {color: #ffff}"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "",
@@ -28,7 +30,12 @@
         "image_position": "center center",
         "background_color": "#66513d",
         "background_gradient": "",
-        "text_color": "#13E813",
+        "heading_color": "#FFFFFF",
+        "bottom_gradient_enabled": true,
+        "bottom_gradient_color": "#000000",
+        "bottom_gradient_opacity": 85,
+        "bottom_gradient_fade_height": 65,
+        "text_color": "#13e813",
         "overlay_opacity": 55,
         "section_height": 100,
         "padding_top": 88,
