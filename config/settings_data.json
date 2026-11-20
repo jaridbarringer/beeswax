@@ -17,6 +17,7 @@
     "bw_global_text": "#33251D",
     "bw_button_background": "#1D3321",
     "bw_button_radius": 6,
+    "logo": "shopify://shop_images/linnie_joyce_25mp_transparent.png",
     "logo_width": 90,
     "type_header_font": "anybody_n4",
     "heading_scale": 115,
@@ -153,13 +154,13 @@
     "color_schemes": {
       "scheme-1": {
         "settings": {
-          "background": "#F5F0E6",
+          "background": "#f5f0e6",
           "background_gradient": "",
           "text": "#121212",
-          "button": "#F5F0E6",
+          "button": "#f5f0e6",
           "button_label": "#ffffff",
           "secondary_button_label": "#121212",
-          "shadow": "#F5F0E6"
+          "shadow": "#f5f0e6"
         }
       },
       "scheme-2": {
