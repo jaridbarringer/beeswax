@@ -11,13 +11,16 @@
   "sections": {
     "bw_hero": {
       "type": "beeswax-hero",
-      "custom_css": [],
+      "custom_css": [
+        ".bw-builder__content--hero h1,.bw-builder__content--hero h1 * {color: #fff !important; -webkit-text-fill-color: #fff !important;}",
+        ".bw-builder__content--hero {color: #fff !important; position: relative; z-index: 2;}"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "",
-        "body": "<p>A thoughtfully made beeswax bread bag for fresh loaves, slow mornings, and a kitchen that feels like home.</p>",
+        "body": "<h2>Get the Gift for Grandma' that she will never forget.</h2>",
         "image": "shopify://shop_images/Rustic_Sourdough_Bread_Bag_Display-2.png",
-        "overlay_gradient": "",
+        "overlay_gradient": "radial-gradient(rgba(249, 119, 255, 1) 8%, rgba(64, 182, 255, 1) 37%, rgba(54, 212, 255, 1) 69%, rgba(43, 252, 135, 1) 83%)",
         "mobile_image": "shopify://shop_images/Rustic_Cream_Bread_Bag_with_Laurel_Print-1.png",
         "product": "reusable-beeswax-bread-bag",
         "collection": "",
@@ -28,7 +31,7 @@
         "image_position": "center center",
         "background_color": "#66513d",
         "background_gradient": "",
-        "text_color": "#E81313",
+        "text_color": "#13E813",
         "overlay_opacity": 55,
         "section_height": 100,
         "padding_top": 88,
