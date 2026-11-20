@@ -11,10 +11,7 @@
   "sections": {
     "bw_hero": {
       "type": "beeswax-hero",
-      "custom_css": [
-        ".bw-builder__content--hero h1,.bw-builder__content--hero h1 * {color: #fff !important; -webkit-text-fill-color: #fff !important;}",
-        ".bw-builder__content--hero {color: #fff !important; position: relative; z-index: 2;}"
-      ],
+      "custom_css": [],
       "settings": {
         "eyebrow": "",
         "heading": "",
