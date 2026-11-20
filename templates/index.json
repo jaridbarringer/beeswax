@@ -20,8 +20,8 @@
         "heading": "",
         "body": "<h2>Get the Gift for Grandma' that she will never forget.</h2>",
         "image": "shopify://shop_images/Rustic_Sourdough_Bread_Bag_Display-2.png",
-        "overlay_gradient": "radial-gradient(rgba(249, 119, 255, 1) 8%, rgba(64, 182, 255, 1) 37%, rgba(54, 212, 255, 1) 69%, rgba(43, 252, 135, 1) 83%)",
-        "mobile_image": "shopify://shop_images/Rustic_Cream_Bread_Bag_with_Laurel_Print-1.png",
+        "overlay_gradient": "",
+        "mobile_image": "shopify://shop_images/Vertical-mobile-format-lifestyle-photo-o.png",
         "product": "reusable-beeswax-bread-bag",
         "collection": "",
         "button_link": "",
@@ -235,7 +235,7 @@
         "overlay_opacity": 30,
         "section_height": 60,
         "padding_top": 72,
-        "padding_bottom": 72,
+        "padding_bottom": 0,
         "motion": "none",
         "columns": 3
       }
@@ -259,8 +259,8 @@
         "background_gradient": "",
         "text_color": "#33251d",
         "overlay_opacity": 45,
-        "section_height": 60,
-        "padding_top": 72,
+        "section_height": 75,
+        "padding_top": 0,
         "padding_bottom": 72,
         "motion": "fade",
         "columns": 3
