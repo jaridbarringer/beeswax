@@ -294,7 +294,7 @@
         "text_color": "#33251d",
         "overlay_opacity": 30,
         "section_height": 60,
-        "padding_top": 72,
+        "padding_top": 0,
         "padding_bottom": 0,
         "motion": "none",
         "columns": 3
@@ -388,31 +388,6 @@
         "columns": 3
       }
     },
-    "bw_collection": {
-      "type": "beeswax-collection",
-      "settings": {
-        "eyebrow": "SHOP THE COLLECTION",
-        "heading": "Thoughtful things for your kitchen.",
-        "body": "<p>Find your everyday favorite.</p>",
-        "overlay_gradient": "",
-        "product": "",
-        "collection": "",
-        "button_link": "",
-        "button_label": "Discover more",
-        "layout": "image-left",
-        "alignment": "center",
-        "image_position": "center center",
-        "background_color": "#f5f0e6",
-        "background_gradient": "",
-        "text_color": "#33251d",
-        "overlay_opacity": 30,
-        "section_height": 60,
-        "padding_top": 72,
-        "padding_bottom": 72,
-        "motion": "none",
-        "columns": 3
-      }
-    },
     "bw_newsletter": {
       "type": "beeswax-newsletter",
       "settings": {
@@ -442,8 +417,8 @@
       "type": "beeswax-cta",
       "settings": {
         "eyebrow": "YOUR KITCHEN, A LITTLE MORE CONSIDERED",
-        "heading": "Make room for the good stuff.",
-        "body": "<p>A fresh loaf. A familiar ritual. A better everyday bread bag.</p>",
+        "heading": "Made for You, Not Mass Produced.",
+        "body": "<p>Have a color, detail, or special idea in mind? We welcome custom requests and made-to-order bags. Tell us what you're imagining, and let's make something special.</p>",
         "overlay_gradient": "",
         "product": "",
         "collection": "",
@@ -474,7 +449,6 @@
     "bw_gallery",
     "bw_story",
     "bw_testimonials",
-    "bw_collection",
     "bw_newsletter",
     "bw_cta"
   ]
