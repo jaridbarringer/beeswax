@@ -63,8 +63,8 @@
         "text_color": "#33251d",
         "overlay_opacity": 30,
         "section_height": 60,
-        "padding_top": 72,
-        "padding_bottom": 72,
+        "padding_top": 8,
+        "padding_bottom": 0,
         "motion": "none",
         "columns": 3
       }
@@ -88,8 +88,8 @@
         "text_color": "#33251d",
         "overlay_opacity": 30,
         "section_height": 60,
-        "padding_top": 72,
-        "padding_bottom": 72,
+        "padding_top": 24,
+        "padding_bottom": 24,
         "motion": "none",
         "columns": 3
       }
@@ -388,6 +388,31 @@
         "columns": 3
       }
     },
+    "bw_cta": {
+      "type": "beeswax-cta",
+      "settings": {
+        "eyebrow": "YOUR KITCHEN, A LITTLE MORE CONSIDERED",
+        "heading": "Made for You, Not Mass Produced.",
+        "body": "<p>Have a color, detail, or special idea in mind? We welcome custom requests and made-to-order bags. Tell us what you're imagining, and let's make something special.</p>",
+        "overlay_gradient": "",
+        "product": "",
+        "collection": "",
+        "button_link": "",
+        "button_label": "Shop the bread bag",
+        "layout": "image-left",
+        "alignment": "center",
+        "image_position": "center center",
+        "background_color": "#f5f0e6",
+        "background_gradient": "",
+        "text_color": "#33251d",
+        "overlay_opacity": 30,
+        "section_height": 60,
+        "padding_top": 0,
+        "padding_bottom": 72,
+        "motion": "none",
+        "columns": 3
+      }
+    },
     "bw_newsletter": {
       "type": "beeswax-newsletter",
       "settings": {
@@ -412,31 +437,6 @@
         "motion": "none",
         "columns": 3
       }
-    },
-    "bw_cta": {
-      "type": "beeswax-cta",
-      "settings": {
-        "eyebrow": "YOUR KITCHEN, A LITTLE MORE CONSIDERED",
-        "heading": "Made for You, Not Mass Produced.",
-        "body": "<p>Have a color, detail, or special idea in mind? We welcome custom requests and made-to-order bags. Tell us what you're imagining, and let's make something special.</p>",
-        "overlay_gradient": "",
-        "product": "",
-        "collection": "",
-        "button_link": "",
-        "button_label": "Shop the bread bag",
-        "layout": "image-left",
-        "alignment": "center",
-        "image_position": "center center",
-        "background_color": "#f5f0e6",
-        "background_gradient": "",
-        "text_color": "#33251d",
-        "overlay_opacity": 30,
-        "section_height": 60,
-        "padding_top": 72,
-        "padding_bottom": 72,
-        "motion": "none",
-        "columns": 3
-      }
     }
   },
   "order": [
@@ -449,7 +449,7 @@
     "bw_gallery",
     "bw_story",
     "bw_testimonials",
-    "bw_newsletter",
-    "bw_cta"
+    "bw_cta",
+    "bw_newsletter"
   ]
 }
