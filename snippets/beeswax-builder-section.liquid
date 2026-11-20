@@ -10,8 +10,15 @@
   assign section_collection = section.settings.collection
   assign hero_image = section.settings.image | default: section_product.featured_image
   assign section_image = section.settings.image | default: section_product.featured_image
+  assign bottom_gradient_color = section.settings.bottom_gradient_color | default: '#000000'
+  assign bottom_gradient_opacity = section.settings.bottom_gradient_opacity | default: 85 | divided_by: 100.0
+  assign bottom_gradient_mid_opacity = bottom_gradient_opacity | times: 0.65
+  assign bottom_gradient_low_opacity = bottom_gradient_opacity | times: 0.25
+  assign bottom_gradient_color_opaque = bottom_gradient_color | color_modify: 'alpha', bottom_gradient_opacity
+  assign bottom_gradient_color_mid = bottom_gradient_color | color_modify: 'alpha', bottom_gradient_mid_opacity
+  assign bottom_gradient_color_low = bottom_gradient_color | color_modify: 'alpha', bottom_gradient_low_opacity
 -%}
-<section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};{% if section.settings.background_image != blank %}background-image:{% if section.settings.overlay_gradient != blank %}{{ section.settings.overlay_gradient }},{% endif %}url('{{ section.settings.background_image | image_url: width: 2400 }}');background-size:cover;background-position:{{ section.settings.image_position }};{% endif %}">
+<section id="BW-{{ kind }}-{{ section.id }}" {% if section.settings.motion != "none" %}data-bw-reveal{% endif %} class="bw-builder bw-builder--{{ kind }} bw-builder--{{ section.settings.layout }} bw-align--{{ section.settings.alignment }} bw-motion--{{ section.settings.motion }}" style="--bw-bg: {{ section_bg }}; --bw-fg: {{ section.settings.text_color }}; --bw-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }}; --bw-height: {{ section.settings.section_height }}vh; --bw-pad-top: {{ section.settings.padding_top }}px; --bw-pad-bottom: {{ section.settings.padding_bottom }}px; --bw-columns: {{ section.settings.columns }};{% if kind == 'hero' %}--bw-hero-heading-color: {{ section.settings.heading_color | default: '#FFFFFF' }};{% endif %}{% if section.settings.background_image != blank %}background-image:{% if section.settings.overlay_gradient != blank %}{{ section.settings.overlay_gradient }},{% endif %}url('{{ section.settings.background_image | image_url: width: 2400 }}');background-size:cover;background-position:{{ section.settings.image_position }};{% endif %}">
   {%- case kind -%}
     {%- when 'announcement' -%}
       <div class="bw-builder__announcement">
@@ -149,7 +156,9 @@
   #BW-{{ kind }}-{{ section.id }} .bw-builder__picture,#BW-{{ kind }}-{{ section.id }} .bw-builder__shade { position:absolute;inset:0;z-index:-1; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__picture img { width:100%;height:100%;object-fit:cover;object-position:{{ section.settings.image_position }};display:block; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__shade { background:{% if section.settings.overlay_gradient != blank %}{{ section.settings.overlay_gradient }}{% else %}linear-gradient(90deg,rgba(30,22,16,var(--bw-overlay)),rgba(30,22,16,calc(var(--bw-overlay)*.25))){% endif %}; }
-  #BW-{{ kind }}-{{ section.id }} .bw-builder__content--hero { width:min(900px,90%);padding:clamp(70px,10vw,150px) 7vw 90px; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__hero::after { content:"";position:absolute;inset:0;z-index:0;pointer-events:none;{% if section.settings.bottom_gradient_enabled %}background:linear-gradient(to top,{{ bottom_gradient_color_opaque }} 0%,{{ bottom_gradient_color_mid }} 25%,{{ bottom_gradient_color_low }} 48%,transparent {{ section.settings.bottom_gradient_fade_height | default: 65 }}%);{% endif %} }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__content--hero { width:min(900px,90%);padding:clamp(70px,10vw,150px) 7vw 90px;position:relative;z-index:1; }
+  #BW-{{ kind }}-{{ section.id }} .bw-builder__content--hero h1 { color:var(--bw-hero-heading-color,#FFFFFF)!important;-webkit-text-fill-color:var(--bw-hero-heading-color,#FFFFFF)!important; }
   #BW-{{ kind }}-{{ section.id }} .bw-builder__split { display:grid;grid-template-columns:1fr 1fr;align-items:stretch; }
   #BW-{{ kind }}-{{ section.id }}.bw-builder--image-right .bw-builder__media { order:2; }
   #BW-{{ kind }}-{{ section.id }}.bw-builder--image-right .bw-builder__content { order:1; }
